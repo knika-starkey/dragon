@@ -58,6 +58,7 @@ function animateDragon(speed) {
   } else {
     createHills();
     position_x = canvas.width;
+    speed++;
   }
 }
 
