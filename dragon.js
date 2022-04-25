@@ -7,6 +7,9 @@ let speed = 2;
 let offset = 200;
 let up = 0;
 let dragon_x = 100;
+let hills = [];
+let l = 1;
+let block;
 
 directions = {
   37: "left",
@@ -26,25 +29,42 @@ window.onload = function () {
     start();
   }
 };
+function createHills() {
+  hills.length = 0;
+  l = Math.floor(Math.random() * 10);
+  for (let i = 0; i < l; i++) {
+    hills.push([
+      Math.floor(Math.random() * 800),
+      Math.floor(Math.random() * 90),
+      Math.floor(Math.random() * 90),
+    ]);
+  }
+  console.log(hills);
+}
 
 function animateDragon(speed) {
   context.clearRect(0, 0, canvas.width, canvas.height);
 
   drawDragon(dragon_x, offset);
   drawGrass();
-  drawHill(position_x + 300, 80, 50);
-  drawHill(position_x + 550, 60, 80);
-  drawHill(position_x + 800, 50, 20);
-  if (position_x + 850 > 0) {
+  // drawHill(position_x + 300, 80, 50);
+  // drawHill(position_x + 550, 60, 80);
+  // drawHill(position_x + 800, 50, 20);
+  for (let i = 0; i < hills.length; i++) {
+    drawHill(position_x + hills[i][0], hills[i][1], hills[i][2]);
+  }
+  if (850 > 0) {
     position_x -= speed;
   } else {
     position_x = canvas.width;
+    //createHills();
   }
 }
 
 function start() {
   stop();
   timer = setInterval(animateDragon, 20, 4);
+  createHills();
 }
 
 function stop() {
