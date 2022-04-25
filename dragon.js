@@ -31,11 +31,11 @@ window.onload = function () {
 };
 function createHills() {
   hills.length = 0;
-  l = Math.floor(Math.random() * 10);
+  l = Math.floor(Math.random() * 4) + 1;
   for (let i = 0; i < l; i++) {
     hills.push([
       Math.floor(Math.random() * 800),
-      Math.floor(Math.random() * 90),
+      Math.floor(Math.random() * 80),
       Math.floor(Math.random() * 90),
     ]);
   }
@@ -53,11 +53,11 @@ function animateDragon(speed) {
   for (let i = 0; i < hills.length; i++) {
     drawHill(position_x + hills[i][0], hills[i][1], hills[i][2]);
   }
-  if (850 > 0) {
+  if (position_x + 880 > 0) {
     position_x -= speed;
   } else {
+    createHills();
     position_x = canvas.width;
-    //createHills();
   }
 }
 
